@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  landingpage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    container_name: landingpage
+    hostname: "landingpage"
+    restart: always
+    # volumes:
+    #   - ./src:/landingpage/src:rw
+    env_file:
+      - ./.env
+    # network_mode: host
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

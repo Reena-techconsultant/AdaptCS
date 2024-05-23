@@ -1,0 +1,21 @@
+# Use an official Node runtime as the builder
+FROM node:18-alpine
+LABEL maintainer="Sumbono <sumbono@adapta.earth>"
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install any needed packages specified in package.json
+RUN npm install
+
+# Bundle app source
+COPY . .
+
+# Make port 3000 available to the world outside this container
+EXPOSE 3000
+
+# Run the app when the container launches
+CMD ["npm", "run", "dev"]
